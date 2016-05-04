@@ -34,7 +34,7 @@ public class Main {
 		abstract ClassifierInterface get();
 	}
 	
-	private static Classifier DEFAULT_CLASSIFIER = Classifier.TREE;
+	private static Classifier DEFAULT_CLASSIFIER = Classifier.BAYES;
 
 	public static void main(String[] args) throws Exception {
 		

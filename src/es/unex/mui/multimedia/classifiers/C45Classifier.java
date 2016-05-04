@@ -18,7 +18,7 @@ public class C45Classifier extends J48 implements ClassifierInterface{
 	public C45Classifier() {
 		super();
 		setBinarySplits(true);
-		//setConfidenceFactor(0.01f);
+		setConfidenceFactor(0.1f);
 		setMinNumObj(2);
 		setNumFolds(3);
 		setReducedErrorPruning(true);
@@ -51,16 +51,16 @@ public class C45Classifier extends J48 implements ClassifierInterface{
 //        train = Filter.useFilter(train, nominalToStringFilter);
         
         // Quitamos Name
-        //train.deleteAttributeAt(3);
+        Utils.removeAttribute(train, "Name");
         // Quitamos Cabin
-        //train.deleteAttributeAt(9);
+        Utils.removeAttribute(train, "Cabin");
         
 		//System.out.println(train);
-        System.out.println(train.toSummaryString());
+        //System.out.println(train.toSummaryString());
         
 		return train;
 	}
-	
+
 	public Instances preprocessTestingData(Instances unlabeled) throws Exception {
 		
 		StringToNominal stringToNominal = new StringToNominal();
@@ -81,12 +81,12 @@ public class C45Classifier extends J48 implements ClassifierInterface{
 		unlabeled.insertAttributeAt(new Attribute("Survived", values ), 1);
 		unlabeled.setClassIndex(1);
 		
-		// Quitamos Name
-		unlabeled.deleteAttributeAt(3);
+        // Quitamos Name
+        Utils.removeAttribute(unlabeled, "Name");
         // Quitamos Cabin
-		unlabeled.deleteAttributeAt(9);
+        Utils.removeAttribute(unlabeled, "Cabin");
 		
-		System.out.println(unlabeled.toSummaryString());
+		//System.out.println(unlabeled.toSummaryString());
 		
 		return unlabeled;
 	}
