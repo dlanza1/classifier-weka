@@ -1,4 +1,4 @@
-package es.unex.mui.multimedia;
+package es.unex.mui.multimedia.classifiers;
 
 import weka.classifiers.Evaluation;
 import weka.core.Instances;

@@ -2,6 +2,7 @@ package es.unex.mui.multimedia;
 
 import java.io.PrintWriter;
 
+import es.unex.mui.multimedia.classifiers.*;
 import weka.classifiers.Evaluation;
 import weka.core.Instance;
 import weka.core.Instances;

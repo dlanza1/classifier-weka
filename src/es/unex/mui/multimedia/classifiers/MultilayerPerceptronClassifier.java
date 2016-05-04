@@ -1,4 +1,4 @@
-package es.unex.mui.multimedia;
+package es.unex.mui.multimedia.classifiers;
 
 import java.util.LinkedList;
 import java.util.List;
