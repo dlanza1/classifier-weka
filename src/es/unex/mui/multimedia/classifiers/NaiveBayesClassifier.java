@@ -9,7 +9,6 @@ import weka.classifiers.bayes.NaiveBayes;
 import weka.core.Attribute;
 import weka.core.Instances;
 import weka.filters.Filter;
-import weka.filters.unsupervised.attribute.NominalToString;
 import weka.filters.unsupervised.attribute.NumericToNominal;
 import weka.filters.unsupervised.attribute.StringToNominal;
 
@@ -18,6 +17,8 @@ public class NaiveBayesClassifier extends NaiveBayes implements ClassifierInterf
 
 	public NaiveBayesClassifier() {
 		super();
+		setUseKernelEstimator(true);
+		setUseSupervisedDiscretization(true);
 	}
 
 	public Instances classifyInstances(Instances unlabeled) throws Exception {
@@ -40,19 +41,8 @@ public class NaiveBayesClassifier extends NaiveBayes implements ClassifierInterf
         numericToNominalFilter.setInputFormat(train);
         train = Filter.useFilter(train, numericToNominalFilter);
         
-        NominalToString nominalToStringFilter = new NominalToString();
-        String[] nominalToStringFilterOptions = {"-C", "4"};
-        nominalToStringFilter.setOptions(nominalToStringFilterOptions);
-        nominalToStringFilter.setInputFormat(train);
-        train = Filter.useFilter(train, nominalToStringFilter);
-        
-        // Quitamos Name
-        train.deleteAttributeAt(3);
-        // Quitamos Cabin
-        train.deleteAttributeAt(9);
-        
 		//System.out.println(train);
-        System.out.println(train.toSummaryString());
+//        System.out.println(train.toSummaryString());
         
 		return train;
 	}
@@ -77,12 +67,7 @@ public class NaiveBayesClassifier extends NaiveBayes implements ClassifierInterf
 		unlabeled.insertAttributeAt(new Attribute("Survived", values ), 1);
 		unlabeled.setClassIndex(1);
 		
-		// Quitamos Name
-		unlabeled.deleteAttributeAt(3);
-        // Quitamos Cabin
-		unlabeled.deleteAttributeAt(9);
-		
-		System.out.println(unlabeled.toSummaryString());
+//		System.out.println(unlabeled.toSummaryString());
 		
 		return unlabeled;
 	}
