@@ -18,6 +18,11 @@ public class MultilayerPerceptronClassifier extends MultilayerPerceptron impleme
 
 	public MultilayerPerceptronClassifier() {
 		super();
+		setLearningRate(0.3d);
+		setMomentum(0.3);
+		setNominalToBinaryFilter(true);
+		setNormalizeNumericClass(true);
+		//setTrainingTime(5000);
 	}
 
 	public Instances classifyInstances(Instances unlabeled) throws Exception {
@@ -47,9 +52,13 @@ public class MultilayerPerceptronClassifier extends MultilayerPerceptron impleme
         train = Filter.useFilter(train, nominalToStringFilter);
         
         // Quitamos Name
-        train.deleteAttributeAt(3);
+        Utils.removeAttribute(train, "Name");
         // Quitamos Cabin
-        train.deleteAttributeAt(9);
+        Utils.removeAttribute(train, "Cabin");
+        // Quitamos PassengerId
+        Utils.removeAttribute(train, "PassengerId");
+        // Quitamos Ticket
+        Utils.removeAttribute(train, "Ticket");
         
 		//System.out.println(train);
         System.out.println(train.toSummaryString());
@@ -78,9 +87,13 @@ public class MultilayerPerceptronClassifier extends MultilayerPerceptron impleme
 		unlabeled.setClassIndex(1);
 		
 		// Quitamos Name
-		unlabeled.deleteAttributeAt(3);
+        Utils.removeAttribute(unlabeled, "Name");
         // Quitamos Cabin
-		unlabeled.deleteAttributeAt(9);
+        Utils.removeAttribute(unlabeled, "Cabin");
+        // Quitamos PassengerId
+        //Utils.removeAttribute(unlabeled, "PassengerId");
+        // Quitamos Ticket
+        Utils.removeAttribute(unlabeled, "Ticket");
 		
 		System.out.println(unlabeled.toSummaryString());
 		

@@ -17,8 +17,8 @@ public class NaiveBayesClassifier extends NaiveBayes implements ClassifierInterf
 
 	public NaiveBayesClassifier() {
 		super();
-		setUseKernelEstimator(true);
-		setUseSupervisedDiscretization(true);
+		setUseKernelEstimator(false);
+		setUseSupervisedDiscretization(false);
 	}
 
 	public Instances classifyInstances(Instances unlabeled) throws Exception {
